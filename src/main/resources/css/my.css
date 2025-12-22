@@ -1,0 +1,80 @@
+/* =========================
+   ROOT
+========================= */
+.root {
+    -fx-font-family: "Segoe UI", "Arial";
+    -fx-background-color: #FFFFFF;
+}
+
+/* =========================
+   LABELS (Username, Password)
+========================= */
+.label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #374151;
+    -fx-font-weight: 500;
+}
+
+/* =========================
+   TEXT FIELD & PASSWORD FIELD
+========================= */
+.text-field,
+.password-field {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: transparent;
+    -fx-padding: 10 14;
+    -fx-font-size: 14px;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: #9CA3AF;
+}
+
+/* =========================
+   FOCUS EFFECT
+========================= */
+.text-field:focused,
+.password-field:focused {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #2563EB;
+    -fx-border-width: 1.2;
+}
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+.button {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+.button:pressed {
+    -fx-background-color: #1E40AF;
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+.error-label {
+    -fx-text-fill: #DC2626;
+    -fx-font-size: 12px;
+}
+
+/* =========================
+   LOGIN CARD CONTAINER
+========================= */
+.login-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12;
+    -fx-padding: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 5);
+}
