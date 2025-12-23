@@ -78,3 +78,46 @@
     -fx-padding: 30;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 15, 0, 0, 5);
 }
+/* Base card */
+.card {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-pref-width: 180;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 4);
+}
+
+/* Card title */
+.card-title {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B7280;
+}
+
+/* Card value */
+.card-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+/* Color accents */
+.card-blue {
+    -fx-border-color: #2563EB;
+    -fx-border-width: 0 0 3 0;
+}
+
+.card-green {
+    -fx-border-color: #16A34A;
+    -fx-border-width: 0 0 3 0;
+}
+
+.card-orange {
+    -fx-border-color: #F97316;
+    -fx-border-width: 0 0 3 0;
+}
+.card-yellow {
+    -fx-border-color: #e6d439;
+    -fx-border-width: 0 0 3 0;
+}

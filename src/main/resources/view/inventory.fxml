@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventoryFormController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0" spacing="90.0">
+         <children>
+            <Label prefHeight="44.0" prefWidth="176.0" text="Current Stock Levels">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtSearchInv" prefHeight="31.0" prefWidth="192.0" promptText="Search inventory..." stylesheets="@../css/my.css">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox prefHeight="338.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="tblInventory" prefHeight="338.0" prefWidth="612.0">
+              <columns>
+                <TableColumn fx:id="colId" prefWidth="138.0" text="Product Name" />
+                <TableColumn fx:id="colQty" prefWidth="332.0" text="Availible Quantity" />
+                  <TableColumn fx:id="colStatus" prefWidth="129.0" text="Status" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>
