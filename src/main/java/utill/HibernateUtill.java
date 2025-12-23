@@ -1,6 +1,7 @@
 package utill;
 
 import modle.entity.CustomerEntity;
+import modle.entity.SupplierEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -13,6 +14,7 @@ public class HibernateUtill {
         Configuration config = new Configuration();
 
         config.addAnnotatedClass(CustomerEntity.class);
+        config.addAnnotatedClass(SupplierEntity.class);
 
 
         config.configure();

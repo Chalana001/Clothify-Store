@@ -1,14 +1,16 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.geometry.Side;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import modle.dto.Customer;
 import modle.dto.Supplier;
 import service.SupplierService;
 import service.SupplierServiceImpl;
@@ -19,6 +21,9 @@ import java.util.ResourceBundle;
 public class SupplierFormController implements Initializable {
 
     SupplierService supplierService = new SupplierServiceImpl();
+
+    private ObservableList<Supplier> supDetailsArray = FXCollections.observableArrayList();
+    private ObservableList<Supplier> searchedSupplierList = FXCollections.observableArrayList();
 
 
     @FXML
@@ -43,7 +48,7 @@ public class SupplierFormController implements Initializable {
     private TableColumn<?, ?> colSupplierName;
 
     @FXML
-    private TableView<?> tblSupplierTable;
+    private TableView<Supplier> tblSupplierTable;
 
     @FXML
     private TextField txtSearchSupplier;
@@ -70,39 +75,80 @@ public class SupplierFormController implements Initializable {
         ));
         loadDataToTable();
         clearFields();
-        txtSupplierId.setText(customerService.getNewCustomerId());
-    }
-
-    private void clearFields() {
-        txtSupplierId.clear();
-        txtSupplierName.clear();
-        txtSupplierContact.clear();
-        txtSupplierEmail.clear();
+        txtSupplierId.setText(supplierService.getNewSupplierId());
     }
 
     @FXML
     void btnUpdateButtonOnAction(ActionEvent event) {
-
+        supplierService.updateSupplier(new Supplier(
+                txtSupplierId.getText(),
+                txtSupplierName.getText(),
+                Integer.parseInt(txtSupplierContact.getText()),
+                txtSupplierEmail.getText()
+        ));
+        loadDataToTable();
     }
 
     @FXML
     void btnGenIdOnAction(ActionEvent event) {
+        clearFields();
+        txtSupplierId.setText(supplierService.getNewSupplierId());
 
     }
 
     @FXML
     void tblOnMouseClicked(MouseEvent event) {
-
+        Supplier supplier = tblSupplierTable.getSelectionModel().getSelectedItem();
+        txtSupplierId.setText(supplier.getSId());
+        txtSupplierName.setText(supplier.getSName());
+        txtSupplierContact.setText(String.valueOf(supplier.getSPhoneNumber()));
+        txtSupplierEmail.setText(supplier.getSEmail());
     }
 
     @FXML
     void txtSupplierIdOnAction(ActionEvent event) {
-
+        setSupplierFields(supplierService.getSupplierById(txtSupplierId.getText()));
     }
+
+    @FXML
+    void showContextMenu(ContextMenuEvent event) {
+        MenuItem menuItemDelete = new MenuItem("Delete");
+
+        menuItemDelete.setOnAction( e -> {
+            supplierService.deleteSupplier(tblSupplierTable.getSelectionModel().getSelectedItem());
+            loadDataToTable();
+        });
+
+        ContextMenu tblMenu = new ContextMenu(menuItemDelete);
+        tblMenu.show(tblSupplierTable,event.getScreenX(),event.getScreenY());
+    }
+
 /// /////////////////////////////////////////////////////////////////////////////////
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         valueSetToTable();
+        loadDataToTable();
+        searchButtonListner();
+    }
+
+    private void searchButtonListner() {
+        txtSearchSupplier.textProperty().addListener((obs,oldText,newText) -> {
+
+            if(newText == null || newText.trim().length()<2){
+                loadDataToTable();
+                return;
+            }
+            searchedSupplierList = supplierService.searchSupplierByName(newText);
+
+            tblSupplierTable.setItems(searchedSupplierList);
+        });
+    }
+
+    public void setSupplierFields(Supplier supplier){
+        txtSupplierId.setText(supplier.getSId());
+        txtSupplierName.setText(supplier.getSName());
+        txtSupplierContact.setText(String.valueOf(supplier.getSPhoneNumber()));
+        txtSupplierEmail.setText(supplier.getSEmail());
     }
 
     private void valueSetToTable() {
@@ -110,5 +156,18 @@ public class SupplierFormController implements Initializable {
         colSupplierName.setCellValueFactory(new PropertyValueFactory<>("SName"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("SPhoneNumber"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("SEmail"));
+    }
+
+    private void loadDataToTable() {
+        supDetailsArray.clear();
+        supDetailsArray = supplierService.getAllSuppliers();
+        tblSupplierTable.setItems(supDetailsArray);
+    }
+
+    private void clearFields() {
+        txtSupplierId.clear();
+        txtSupplierName.clear();
+        txtSupplierContact.clear();
+        txtSupplierEmail.clear();
     }
 }

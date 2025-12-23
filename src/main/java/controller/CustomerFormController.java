@@ -170,7 +170,7 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void tblOnMouseClicked(MouseEvent event) {
-        System.out.println("clicked");
+
 
     }
 
