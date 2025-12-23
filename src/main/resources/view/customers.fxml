@@ -61,7 +61,7 @@
                 </HBox>
                 <HBox prefHeight="335.0" prefWidth="409.0">
                     <children>
-                        <TableView fx:id="tblCustomerTable" onMouseClicked="#tblOnMouseClicked" prefHeight="335.0" prefWidth="435.0">
+                        <TableView fx:id="tblCustomerTable" onContextMenuRequested="#showContextMenu" onMouseClicked="#tblOnMouseClicked" prefHeight="335.0" prefWidth="435.0">
                             <columns>
                                 <TableColumn fx:id="colId" prefWidth="75.0" text="Customer ID" />
                                 <TableColumn fx:id="colName" prefWidth="151.0" text="Name" />
