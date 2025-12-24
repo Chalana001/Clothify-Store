@@ -15,43 +15,48 @@
     <children>
         <VBox alignment="CENTER" prefHeight="400.0" prefWidth="234.0" spacing="10.0">
             <children>
-                <Label prefHeight="23.0" prefWidth="186.0" text="Employee ID">
+                <Label prefHeight="23.0" prefWidth="186.0" text="Employee ID" textFill="#2563eb">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Label>
                 <AnchorPane prefHeight="30.0" prefWidth="191.0">
                     <children>
-                        <TextField fx:id="txtId" layoutY="2.0" onAction="#txtEmployeeIdOnAction" stylesheets="@../css/my.css" />
+                        <TextField fx:id="txtId" layoutY="2.0" onAction="#txtEmployeeIdOnAction" promptText="Enter Employee ID" stylesheets="@../css/my.css" />
                         <Button fx:id="btnGenId" layoutX="155.0" mnemonicParsing="false" onAction="#btnGenIdOnAction" prefHeight="25.0" prefWidth="27.0" stylesheets="@../css/my.css" text="R" />
                     </children>
                 </AnchorPane>
-                <Label prefHeight="17.0" prefWidth="195.0" text="Employee Name">
+                <Label prefHeight="17.0" prefWidth="195.0" text="Employee Name" textFill="#2563eb">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtName" stylesheets="@../css/my.css" />
-                <Label prefHeight="17.0" prefWidth="195.0" text="Role">
+                <TextField fx:id="txtName" promptText="Enter Employee Name" stylesheets="@../css/my.css" />
+                <Label prefHeight="17.0" prefWidth="195.0" text="Role" textFill="#2563eb">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtRole" stylesheets="@../css/my.css" />
-                <Label prefHeight="17.0" prefWidth="195.0" text="Contact">
+                <TextField fx:id="txtRole" promptText="Enter Role" stylesheets="@../css/my.css" />
+                <Label prefHeight="17.0" prefWidth="195.0" text="Contact" textFill="#2563eb">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Label>
-                <TextField fx:id="txtContact" stylesheets="@../css/my.css" />
-                <Button fx:id="btnAddButton" mnemonicParsing="false" onAction="#btnAddButtonOnAction" stylesheets="@../css/my.css" text="Add" />
+                <TextField fx:id="txtContact" promptText="Enter Employee Contact" stylesheets="@../css/my.css" />
+            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="205.0" spacing="13.0">
+               <children>
+                  <Button fx:id="btnAddButton" mnemonicParsing="false" onAction="#btnAddButtonOnAction" prefHeight="40.0" prefWidth="89.0" stylesheets="@../css/my.css" text="Add" />
+                  <Button fx:id="btnUpdateButton" mnemonicParsing="false" onAction="#btnUpdateButtonOnAction" prefHeight="40.0" prefWidth="89.0" stylesheets="@../css/my.css" text="Update" />
+               </children>
+            </HBox>
             </children>
         </VBox>
         <VBox prefHeight="400.0" prefWidth="452.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="59.0" prefWidth="409.0" spacing="90.0">
                     <children>
-                        <Label prefHeight="38.0" prefWidth="146.0" text="Employee Table">
+                        <Label prefHeight="38.0" prefWidth="185.0" text="Employee Table" textFill="#2563eb">
                             <font>
                                 <Font size="19.0" />
                             </font>
@@ -61,7 +66,7 @@
                 </HBox>
                 <HBox prefHeight="335.0" prefWidth="409.0">
                     <children>
-                        <TableView fx:id="tblEmployeeTable" onMouseClicked="#tblOnMouseClicked" prefHeight="335.0" prefWidth="435.0">
+                        <TableView fx:id="tblEmployeeTable" onContextMenuRequested="#showContextMenu" onMouseClicked="#tblOnMouseClicked" prefHeight="335.0" prefWidth="435.0">
                             <columns>
                                 <TableColumn fx:id="colId" prefWidth="75.0" text="Employee ID" />
                                 <TableColumn fx:id="colName" prefWidth="151.0" text="Name" />

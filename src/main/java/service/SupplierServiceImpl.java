@@ -21,7 +21,6 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     public void addSupplier(Supplier supplier) {
-
         if (supplier == null){return;}
 
         supplierRepository.addSupplier(new SupplierEntity(
@@ -112,6 +111,4 @@ public class SupplierServiceImpl implements SupplierService {
         }
         return supplierObservableListForSearchCustomer;
     }
-
-
 }
