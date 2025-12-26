@@ -1,8 +1,6 @@
 package utill;
 
-import modle.entity.CustomerEntity;
-import modle.entity.EmployeeEntity;
-import modle.entity.SupplierEntity;
+import modle.entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,6 +15,9 @@ public class HibernateUtill {
         config.addAnnotatedClass(CustomerEntity.class);
         config.addAnnotatedClass(SupplierEntity.class);
         config.addAnnotatedClass(EmployeeEntity.class);
+        config.addAnnotatedClass(ProductEntity.class);
+        config.addAnnotatedClass(OrdersEntity.class);
+        config.addAnnotatedClass(OrderDetailsEntity.class);
 
 
         config.configure();

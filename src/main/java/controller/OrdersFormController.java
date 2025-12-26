@@ -1,13 +1,35 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.geometry.Side;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import modle.dto.CartProducts;
+import modle.dto.Customer;
+import modle.dto.Orders;
+import modle.dto.Product;
+import service.PlaceOrderService;
+import service.PlaceOrderServiceImpl;
 
-public class OrdersFormController {
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class OrdersFormController implements Initializable {
+
+    PlaceOrderService placeOrderService = new PlaceOrderServiceImpl();
+
+    ObservableList<CartProducts> cartProducts = FXCollections.observableArrayList();
+    ObservableList<Product> searchProducts = FXCollections.observableArrayList();
+    ObservableList<Customer> customers = FXCollections.observableArrayList();
+    List<String> cusNames = new ArrayList<>();
+
 
     @FXML
     private Button btnPlaceOrder;
@@ -52,17 +74,117 @@ public class OrdersFormController {
     private TextField txtProductName;
 
     @FXML
-    private TextField txtQty;
+    private ComboBox<String> comboCustomer;
+
+    @FXML
+    private TableView<CartProducts> tblCart;
+
+    @FXML
+    private ContextMenu contextPNames;
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
+        placeOrderService.placeOrder(new Orders(
+                genOrderId(),
+                txtCustomerId.getText(),
+                LocalDate.now()
+        ), cartProducts);
+    }
 
+    private String genOrderId() {
+        return placeOrderService.genOrderId();
+    }
+
+    @FXML
+    void comboCustomerOnAction(ActionEvent event) {
+        summaryCusName.setText(comboCustomer.getValue());
     }
 
     @FXML
     void txtProductIdOnAction(ActionEvent event) {
-
+        Product product = placeOrderService.getProductById(txtProductId.getText());
+        addToCart(product);
+        txtProductName.clear();
+        txtProductId.clear();
     }
 
+    private void addToCart(Product product){
+        CartProducts cartProduct = new CartProducts(
+                product.getPId(),
+                product.getPName(),
+                1,
+                product.getPrice(),
+                product.getPrice()
+        );
+        cartProducts.add(cartProduct);
+        tblCart.setItems(cartProducts);
+        calcNetTotal ();
+        summaryQty.setText(String.valueOf(cartProducts.size()));
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tableValueSet();
+        loadtCustomers();
+        searchProductByName();
+    }
+
+    private void tableValueSet() {
+        coltProductId.setCellValueFactory(new PropertyValueFactory<>("pId"));
+        colProductName.setCellValueFactory(new PropertyValueFactory<>("pName"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("pQty"));
+        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+    }
+
+    private void searchProductByName(){
+        txtProductName.textProperty().addListener((obs,oldText,newText) -> {
+            contextPNames.hide();
+            contextPNames.getItems().clear();
+
+            if (newText == null || newText.trim().length() < 3) {
+                return;
+            }
+
+            searchProducts = placeOrderService.searchProductByName(newText);
+
+            for (Product product : searchProducts) {
+
+                Label label = new Label(product.getPId()+ " - " + product.getPName() + " - " + " - Rs."+product.getPrice());
+                label.setStyle("-fx-font-weight: bold;");
+
+                MenuItem menuItem = new MenuItem(); //item.getItemName()
+                menuItem.setGraphic(label);
+                menuItem.setOnAction(e -> {
+                    addToCart(product);
+                    txtProductName.clear();
+                    txtProductId.clear();
+                });
+                contextPNames.getItems().add(menuItem);
+            }
+
+            if (!contextPNames.getItems().isEmpty()) {
+                contextPNames.show(txtProductName, Side.BOTTOM, 0, 0);
+            }
+        });
+    }
+
+    private void loadtCustomers(){
+        cusNames.clear();
+        customers = placeOrderService.getAllCustomerIds();
+        for (Customer customer: customers){
+            cusNames.add(customer.getId()+" - " + customer.getName());
+        }
+        comboCustomer.getItems().setAll(cusNames);
+    }
+
+    private void calcNetTotal () {
+        Double netTotal = 0.0;
+        for (CartProducts cartProducts : cartProducts) {
+            netTotal += cartProducts.getTotal();
+        }
+        summaryNetTotal.setText(String.valueOf(netTotal));
+        summarySubTotal.setText(String.valueOf(netTotal));
+    }
 }
 
