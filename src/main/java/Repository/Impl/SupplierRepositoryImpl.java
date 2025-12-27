@@ -1,6 +1,6 @@
-package Repository;
+package Repository.Impl;
 
-import modle.entity.CustomerEntity;
+import Repository.SupplierRepository;
 import modle.entity.SupplierEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -9,7 +9,7 @@ import utill.HibernateUtill;
 
 import java.util.List;
 
-public class SupplierRepositoryImpl implements SupplierRepository{
+public class SupplierRepositoryImpl implements SupplierRepository {
     Session session = HibernateUtill.getSession();
     @Override
     public void addSupplier(SupplierEntity supplierEntity) {

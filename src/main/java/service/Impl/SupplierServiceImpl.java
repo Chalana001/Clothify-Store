@@ -1,13 +1,12 @@
-package service;
+package service.Impl;
 
 import Repository.SupplierRepository;
-import Repository.SupplierRepositoryImpl;
+import Repository.Impl.SupplierRepositoryImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import modle.dto.Customer;
 import modle.dto.Supplier;
-import modle.entity.CustomerEntity;
 import modle.entity.SupplierEntity;
+import service.SupplierService;
 
 import java.util.List;
 

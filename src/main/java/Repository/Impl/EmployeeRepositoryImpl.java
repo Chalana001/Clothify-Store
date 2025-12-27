@@ -1,7 +1,7 @@
-package Repository;
+package Repository.Impl;
 
+import Repository.EmployeeRepository;
 import modle.entity.EmployeeEntity;
-import modle.entity.SupplierEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -9,7 +9,7 @@ import utill.HibernateUtill;
 
 import java.util.List;
 
-public class EmployeeRepositoryImpl implements EmployeeRepository{
+public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     Session session = HibernateUtill.getSession();
     @Override

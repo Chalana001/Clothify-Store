@@ -13,15 +13,13 @@ import modle.dto.Customer;
 import modle.dto.Orders;
 import modle.dto.Product;
 import service.PlaceOrderService;
-import service.PlaceOrderServiceImpl;
+import service.Impl.PlaceOrderServiceImpl;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class OrdersFormController implements Initializable {
+public class PlaceOrderFormController implements Initializable {
 
     PlaceOrderService placeOrderService = new PlaceOrderServiceImpl();
 

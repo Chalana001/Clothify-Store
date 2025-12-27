@@ -29,8 +29,8 @@ public class vBoxMainController {
     }
 
     @FXML
-    private void openOrders() {
-        loadView("orders.fxml");
+    private void openPlaceOrder() {
+        loadView("PlaceOrder.fxml");
     }
 
     @FXML

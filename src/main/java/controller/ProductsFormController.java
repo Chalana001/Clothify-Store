@@ -10,9 +10,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import modle.dto.Product;
-import modle.dto.Product;
 import service.ProductService;
-import service.ProductServiceImpl;
+import service.Impl.ProductServiceImpl;
 
 import java.net.URL;
 import java.util.List;

@@ -1,7 +1,7 @@
-package Repository;
+package Repository.Impl;
 
+import Repository.ProductRepository;
 import modle.entity.ProductEntity;
-import modle.entity.SupplierEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -9,7 +9,7 @@ import utill.HibernateUtill;
 
 import java.util.List;
 
-public class ProductRepositoryImpl implements ProductRepository{
+public class ProductRepositoryImpl implements ProductRepository {
 
     Session session = HibernateUtill.getSession();
 

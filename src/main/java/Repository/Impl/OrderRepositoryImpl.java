@@ -1,12 +1,12 @@
-package Repository;
+package Repository.Impl;
 
-import modle.entity.CustomerEntity;
+import Repository.OrderRepository;
 import modle.entity.OrdersEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utill.HibernateUtill;
 
-public class OrderRepositoryImpl implements OrderRepository{
+public class OrderRepositoryImpl implements OrderRepository {
 
     Session session = HibernateUtill.getSession();
 

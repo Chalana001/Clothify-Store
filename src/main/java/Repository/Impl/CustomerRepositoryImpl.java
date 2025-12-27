@@ -1,5 +1,6 @@
-package Repository;
+package Repository.Impl;
 
+import Repository.CustomerRepository;
 import modle.entity.CustomerEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -8,7 +9,7 @@ import utill.HibernateUtill;
 
 import java.util.List;
 
-public class CustomerRepositoryImpl implements CustomerRepository{
+public class CustomerRepositoryImpl implements CustomerRepository {
 
     private Session session = HibernateUtill.getSession();
 

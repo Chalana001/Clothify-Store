@@ -1,17 +1,16 @@
-package service;
+package service.Impl;
 
 import Repository.EmployeeRepository;
-import Repository.EmployeeRepositoryImpl;
+import Repository.Impl.EmployeeRepositoryImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modle.dto.Employee;
-import modle.dto.Supplier;
 import modle.entity.EmployeeEntity;
-import modle.entity.SupplierEntity;
+import service.EmployeeService;
 
 import java.util.List;
 
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository = new EmployeeRepositoryImpl();
     private ObservableList<Employee> employeeObservableList = FXCollections.observableArrayList();

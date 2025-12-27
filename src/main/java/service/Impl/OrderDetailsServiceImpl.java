@@ -1,15 +1,15 @@
-package service;
+package service.Impl;
 
 import Repository.OrderDetailsRepository;
-import Repository.OrderDetailsRepositoryImpl;
+import Repository.Impl.OrderDetailsRepositoryImpl;
 import javafx.collections.ObservableList;
 import modle.dto.CartProducts;
-import modle.dto.OrderDetails;
 import modle.dto.Orders;
 import modle.entity.OrderDetailsEntity;
 import modle.pk.OrderDetailsId;
+import service.OrderDetailsService;
 
-public class OrderDetailsServiceImpl implements OrderDetailsService{
+public class OrderDetailsServiceImpl implements OrderDetailsService {
 
     OrderDetailsRepository orderDetailsRepository = new OrderDetailsRepositoryImpl();
 

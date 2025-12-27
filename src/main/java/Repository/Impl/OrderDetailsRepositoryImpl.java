@@ -1,6 +1,7 @@
-package Repository;
+package Repository.Impl;
 
 
+import Repository.OrderDetailsRepository;
 import modle.entity.OrderDetailsEntity;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

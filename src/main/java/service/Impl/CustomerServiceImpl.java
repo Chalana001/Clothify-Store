@@ -1,15 +1,16 @@
-package service;
+package service.Impl;
 
 import Repository.CustomerRepository;
-import Repository.CustomerRepositoryImpl;
+import Repository.Impl.CustomerRepositoryImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modle.dto.Customer;
 import modle.entity.CustomerEntity;
+import service.CustomerService;
 
 import java.util.List;
 
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl implements CustomerService {
 
     private CustomerRepository customerRepository = new CustomerRepositoryImpl();
     private List<CustomerEntity> customerEntityList = null;

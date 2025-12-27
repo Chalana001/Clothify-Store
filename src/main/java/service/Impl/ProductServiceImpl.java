@@ -1,18 +1,19 @@
-package service;
+package service.Impl;
 
 import Repository.ProductRepository;
-import Repository.ProductRepositoryImpl;
+import Repository.Impl.ProductRepositoryImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import modle.dto.Product;
 import modle.dto.Supplier;
 import modle.entity.ProductEntity;
-import modle.entity.SupplierEntity;
+import service.ProductService;
+import service.SupplierService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     private ObservableList<Product> productObservableList = FXCollections.observableArrayList();
     private ObservableList<Product> productObservableListForSearchProduct = FXCollections.observableArrayList();

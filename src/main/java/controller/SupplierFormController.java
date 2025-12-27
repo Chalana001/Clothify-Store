@@ -5,15 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Side;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
-import modle.dto.Customer;
 import modle.dto.Supplier;
 import service.SupplierService;
-import service.SupplierServiceImpl;
+import service.Impl.SupplierServiceImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
