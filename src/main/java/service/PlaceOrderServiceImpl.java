@@ -26,11 +26,6 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
     }
 
     @Override
-    public ObservableList<Customer> getAllCustomerIds() {
-        return customerService.getAllCustomers();
-    }
-
-    @Override
     public String genOrderId() {
         String lastOrderId = orderService.getLastOrderId();
         if(lastOrderId==null || lastOrderId.equals("")) {
@@ -45,5 +40,10 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
     public void placeOrder(Orders orders, ObservableList<CartProducts> cartProducts) {
         orderService.addOrder(orders);
         orderDetailsService.addOrderDetails(orders, cartProducts);
+    }
+
+    @Override
+    public ObservableList<Customer> searchCustomerByName(String newText) {
+        return customerService.searchCustomerByNameSearch(newText);
     }
 }

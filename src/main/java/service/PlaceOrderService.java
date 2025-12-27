@@ -11,9 +11,9 @@ public interface PlaceOrderService {
 
     ObservableList<Product> searchProductByName(String newText);
 
-    ObservableList<Customer> getAllCustomerIds();
-
     String genOrderId();
 
     void placeOrder(Orders orders, ObservableList<CartProducts> cartProducts);
+
+    ObservableList<Customer> searchCustomerByName(String newText);
 }

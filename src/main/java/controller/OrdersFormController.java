@@ -27,8 +27,8 @@ public class OrdersFormController implements Initializable {
 
     ObservableList<CartProducts> cartProducts = FXCollections.observableArrayList();
     ObservableList<Product> searchProducts = FXCollections.observableArrayList();
-    ObservableList<Customer> customers = FXCollections.observableArrayList();
-    List<String> cusNames = new ArrayList<>();
+    ObservableList<Customer> searchCustomers = FXCollections.observableArrayList();
+    private String customerID = "C001";
 
 
     @FXML
@@ -62,10 +62,7 @@ public class OrdersFormController implements Initializable {
     private Label summarySubTotal;
 
     @FXML
-    private TextField txtCustomerId;
-
-    @FXML
-    private TextField txtCustomerName;
+    private TextField txtCustName;
 
     @FXML
     private TextField txtProductId;
@@ -74,19 +71,20 @@ public class OrdersFormController implements Initializable {
     private TextField txtProductName;
 
     @FXML
-    private ComboBox<String> comboCustomer;
-
-    @FXML
     private TableView<CartProducts> tblCart;
 
     @FXML
     private ContextMenu contextPNames;
 
+
+    @FXML
+    private ContextMenu contextCustName;
+
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
         placeOrderService.placeOrder(new Orders(
                 genOrderId(),
-                txtCustomerId.getText(),
+                customerID,
                 LocalDate.now()
         ), cartProducts);
     }
@@ -95,10 +93,6 @@ public class OrdersFormController implements Initializable {
         return placeOrderService.genOrderId();
     }
 
-    @FXML
-    void comboCustomerOnAction(ActionEvent event) {
-        summaryCusName.setText(comboCustomer.getValue());
-    }
 
     @FXML
     void txtProductIdOnAction(ActionEvent event) {
@@ -125,8 +119,40 @@ public class OrdersFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tableValueSet();
-        loadtCustomers();
         searchProductByName();
+        searchCustomerByName();
+    }
+
+    private void searchCustomerByName() {
+        txtCustName.textProperty().addListener((obs,oldText,newText) -> {
+            contextCustName.hide();
+            contextCustName.getItems().clear();
+
+            if (newText == null || newText.trim().length() < 3) {
+                return;
+            }
+
+            searchCustomers = placeOrderService.searchCustomerByName(newText);
+
+            for (Customer customer : searchCustomers) {
+
+                Label label = new Label(customer.getId()+ " - " + customer.getName());
+                label.setStyle("-fx-font-weight: bold;");
+
+                MenuItem menuItem = new MenuItem(); //item.getItemName()
+                menuItem.setGraphic(label);
+                menuItem.setOnAction(e -> {
+                    customerID = customer.getId();
+                    summaryCusName.setText(label.getText());
+                    txtCustName.clear();
+                });
+                contextCustName.getItems().add(menuItem);
+            }
+
+            if (!contextCustName.getItems().isEmpty()) {
+                contextCustName.show(txtCustName, Side.BOTTOM, 0, 0);
+            }
+        });
     }
 
     private void tableValueSet() {
@@ -167,15 +193,6 @@ public class OrdersFormController implements Initializable {
                 contextPNames.show(txtProductName, Side.BOTTOM, 0, 0);
             }
         });
-    }
-
-    private void loadtCustomers(){
-        cusNames.clear();
-        customers = placeOrderService.getAllCustomerIds();
-        for (Customer customer: customers){
-            cusNames.add(customer.getId()+" - " + customer.getName());
-        }
-        comboCustomer.getItems().setAll(cusNames);
     }
 
     private void calcNetTotal () {

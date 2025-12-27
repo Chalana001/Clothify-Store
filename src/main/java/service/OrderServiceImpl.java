@@ -11,7 +11,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String getLastOrderId() {
-        return orderRepository.getLastOrder().getOrderId();
+        OrdersEntity orders = orderRepository.getLastOrder();
+        if (orders!=null){
+            return String.valueOf(orders.getOrderId());
+        }
+        return null;
     }
 
     @Override
