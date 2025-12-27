@@ -30,10 +30,6 @@ public class OrdersFormController implements Initializable {
     ObservableList<Customer> searchCustomers = FXCollections.observableArrayList();
     private String customerID = "C001";
 
-
-    @FXML
-    private Button btnPlaceOrder;
-
     @FXML
     private TableColumn<?, ?> colPrice;
 
@@ -76,7 +72,6 @@ public class OrdersFormController implements Initializable {
     @FXML
     private ContextMenu contextPNames;
 
-
     @FXML
     private ContextMenu contextCustName;
 
@@ -87,12 +82,21 @@ public class OrdersFormController implements Initializable {
                 customerID,
                 LocalDate.now()
         ), cartProducts);
+
+        clearAll();
     }
 
+    private void clearAll() {
+        cartProducts.clear();
+        summaryQty.setText("");
+        summarySubTotal.setText("");
+        summaryNetTotal.setText("");
+        summaryCusName.setText("");
+        customerID="C001";
+    }
     private String genOrderId() {
         return placeOrderService.genOrderId();
     }
-
 
     @FXML
     void txtProductIdOnAction(ActionEvent event) {
