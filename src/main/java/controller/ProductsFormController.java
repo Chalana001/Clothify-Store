@@ -25,7 +25,6 @@ public class ProductsFormController implements Initializable {
     private ObservableList<Product> searchProductList = FXCollections.observableArrayList();
     private ObservableList<Product> supplierIds = FXCollections.observableArrayList();
 
-
     @FXML
     private Button btnAdd;
 
@@ -79,36 +78,47 @@ public class ProductsFormController implements Initializable {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        if (comboSupplierId.getSelectionModel().getSelectedItem()==null){
-            //popup dialog
+        if (comboSupplierId.getSelectionModel().getSelectedItem()==null || !txtProductName.getText().matches(".*[a-zA-Z].*" ) || !txtProductSize.getText().matches(".*[a-zA-Z0-9].*" )){
+            return;
         }
-        productService.addProduct(new Product(
-                txtProductId.getText(),
-                txtProductName.getText(),
-                txtProductCatagory.getText(),
-                txtProductSize.getText(),
-                Double.valueOf(txtProductPrice.getText()),
-                Integer.parseInt(txtProductQty.getText()),
-                comboSupplierId.getSelectionModel().getSelectedItem()
-        ));
-        loadDataToTable();
-        clearFields();
-        txtProductId.setText(productService.getNewProductId());
-        loadSupplierIds();
+        try {
+            productService.addProduct(new Product(
+                    txtProductId.getText(),
+                    txtProductName.getText(),
+                    txtProductCatagory.getText(),
+                    txtProductSize.getText(),
+                    Double.valueOf(txtProductPrice.getText()),
+                    Integer.parseInt(txtProductQty.getText()),
+                    comboSupplierId.getSelectionModel().getSelectedItem()
+            ));
+            loadDataToTable();
+            clearFields();
+            txtProductId.setText(productService.getNewProductId());
+            loadSupplierIds();
+        } catch (RuntimeException e) {
+
+        }
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        productService.updateProduct(new Product(
-                txtProductId.getText(),
-                txtProductName.getText(),
-                txtProductCatagory.getText(),
-                txtProductSize.getText(),
-                Double.valueOf(txtProductPrice.getText()),
-                Integer.parseInt(txtProductQty.getText()),
-                comboSupplierId.getSelectionModel().getSelectedItem()
-        ));
-        loadDataToTable();
+        if (comboSupplierId.getSelectionModel().getSelectedItem()==null || !txtProductName.getText().matches(".*[a-zA-Z].*" ) || !txtProductSize.getText().matches(".*[a-zA-Z0-9].*" )){
+            return;
+        }
+        try {
+            productService.updateProduct(new Product(
+                    txtProductId.getText(),
+                    txtProductName.getText(),
+                    txtProductCatagory.getText(),
+                    txtProductSize.getText(),
+                    Double.valueOf(txtProductPrice.getText()),
+                    Integer.parseInt(txtProductQty.getText()),
+                    comboSupplierId.getSelectionModel().getSelectedItem()
+            ));
+            loadDataToTable();
+        } catch (RuntimeException e) {
+
+        }
     }
 
     @FXML
@@ -147,13 +157,8 @@ public class ProductsFormController implements Initializable {
         supplierIds.clear();
         comboSupplierId.getItems().clear();
         Product product = tblProductTable.getSelectionModel().getSelectedItem();
-        txtProductId.setText(product.getPId());
-        txtProductName.setText(product.getPName());
-        txtProductCatagory.setText(product.getPId());
-        txtProductSize.setText(product.getPId());
-        txtProductPrice.setText(product.getPId());
-        txtProductQty.setText(String.valueOf(product.getAvailibleQty()));
-        comboSupplierId.getItems().add(product.getSid());
+        setProductFields(product);
+        loadSupplierIds();
     }
 
     @Override
@@ -162,7 +167,48 @@ public class ProductsFormController implements Initializable {
         loadDataToTable();
         searchButtonListner();
         loadSupplierIds();
+        textFomatters();
     }
+
+    private void textFomatters(){
+        txtProductName.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z ]*")){
+                return change;
+            }
+            return null;
+        }));
+        txtProductCatagory.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z-_ ]*")){
+                return change;
+            }
+            return null;
+        }));
+        txtProductId.setEditable(false);
+        txtProductQty.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[0-9]*")){
+                return change;
+            }
+            return null;
+        }));
+        txtProductSize.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[0-9]*")){
+                return change;
+            }
+            return null;
+        }));
+        txtProductPrice.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[0-9.]*")){
+                return change;
+            }
+            return null;
+        }));
+    }
+
     private void loadSupplierIds() {
         List<String> productIds = productService.getAllSupplierIds();
         comboSupplierId.getItems().setAll(productIds);
@@ -187,11 +233,11 @@ public class ProductsFormController implements Initializable {
         comboSupplierId.getItems().clear();
         txtProductId.setText(product.getPId());
         txtProductName.setText(product.getPName());
-        txtProductCatagory.setText(product.getPId());
-        txtProductSize.setText(product.getPId());
-        txtProductPrice.setText(product.getPId());
+        txtProductCatagory.setText(product.getCatagory());
+        txtProductSize.setText(product.getSize());
+        txtProductPrice.setText(String.valueOf(product.getPrice()));
         txtProductQty.setText(String.valueOf(product.getAvailibleQty()));
-        comboSupplierId.getItems().add(product.getSid());
+        comboSupplierId.setValue(product.getSid());
     }
 
     private void valueSetToTable() {

@@ -65,26 +65,43 @@ public class SupplierFormController implements Initializable {
 
     @FXML
     void btnAddButtonOnAction(ActionEvent event) {
-        supplierService.addSupplier(new Supplier(
-                txtSupplierId.getText(),
-                txtSupplierName.getText(),
-                Integer.parseInt(txtSupplierContact.getText()),
-                txtSupplierEmail.getText()
-        ));
-        loadDataToTable();
-        clearFields();
-        txtSupplierId.setText(supplierService.getNewSupplierId());
+
+        if (!txtSupplierId.getText().matches(".*[a-zA-Z].*" ) || !txtSupplierName.getText().matches(".*[a-zA-Z0-9].*") || !txtSupplierEmail.getText().matches(".*[a-zA-Z0-9@.].*")){
+            return;
+        }
+
+        try {
+            supplierService.addSupplier(new Supplier(
+                    txtSupplierId.getText(),
+                    txtSupplierName.getText(),
+                    Integer.parseInt(txtSupplierContact.getText()),
+                    txtSupplierEmail.getText()
+            ));
+            loadDataToTable();
+            clearFields();
+            txtSupplierId.setText(supplierService.getNewSupplierId());
+        } catch (RuntimeException e) {
+
+        }
     }
 
     @FXML
     void btnUpdateButtonOnAction(ActionEvent event) {
-        supplierService.updateSupplier(new Supplier(
-                txtSupplierId.getText(),
-                txtSupplierName.getText(),
-                Integer.parseInt(txtSupplierContact.getText()),
-                txtSupplierEmail.getText()
-        ));
-        loadDataToTable();
+        if (!txtSupplierId.getText().matches(".*[a-zA-Z].*" ) || !txtSupplierName.getText().matches(".*[a-zA-Z0-9].*") || !txtSupplierEmail.getText().matches(".*[a-zA-Z0-9@.].*")){
+            return;
+        }
+
+        try {
+            supplierService.updateSupplier(new Supplier(
+                    txtSupplierId.getText(),
+                    txtSupplierName.getText(),
+                    Integer.parseInt(txtSupplierContact.getText()),
+                    txtSupplierEmail.getText()
+            ));
+            loadDataToTable();
+        } catch (RuntimeException e) {
+
+        }
     }
 
     @FXML
@@ -97,10 +114,7 @@ public class SupplierFormController implements Initializable {
     @FXML
     void tblOnMouseClicked(MouseEvent event) {
         Supplier supplier = tblSupplierTable.getSelectionModel().getSelectedItem();
-        txtSupplierId.setText(supplier.getSId());
-        txtSupplierName.setText(supplier.getSName());
-        txtSupplierContact.setText(String.valueOf(supplier.getSPhoneNumber()));
-        txtSupplierEmail.setText(supplier.getSEmail());
+        setSupplierFields(supplier);
     }
 
     @FXML
@@ -127,6 +141,39 @@ public class SupplierFormController implements Initializable {
         valueSetToTable();
         loadDataToTable();
         searchButtonListner();
+        textFomatters();
+    }
+
+    private void textFomatters(){
+        txtSupplierName.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z ]*")){
+                return change;
+            }
+            return null;
+        }));
+        txtSearchSupplier.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z ]*")){
+                return change;
+            }
+            return null;
+        }));
+        txtSupplierEmail.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z0-9-_.@ ]*")){
+                return change;
+            }
+            return null;
+        }));
+        txtSupplierId.setEditable(false);
+        txtSupplierContact.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[0-9]*")){
+                return change;
+            }
+            return null;
+        }));
     }
 
     private void searchButtonListner() {

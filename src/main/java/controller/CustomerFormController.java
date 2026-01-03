@@ -23,8 +23,8 @@ public class CustomerFormController implements Initializable {
 
     ObservableList<Customer> cusDetailsArray = FXCollections.observableArrayList();
     private CustomerService customerService = new CustomerServiceImpl();
+    ObservableList<Customer> searchedCustomerList;
 
-    ContextMenu suggestionCustomerNameMenu = new ContextMenu();
 
     private Customer updateCustomer;
 
@@ -67,91 +67,37 @@ public class CustomerFormController implements Initializable {
     @FXML
     private void showContextMenu(ContextMenuEvent event) {
 
-        Customer selectedCustomer = tblCustomerTable.getSelectionModel().getSelectedItem();
-        if (selectedCustomer == null) {
-            return;
-        }
+        MenuItem menuItemDelete = new MenuItem("Delete");
 
-        MenuItem edit = new MenuItem("Editable (False)");
-        MenuItem delete = new MenuItem("Delete");
-
-        edit.setOnAction(e -> {
-
-            tblCustomerTable.setEditable(true);
-            colName.setEditable(true);
-            colEmail.setEditable(true);
-            colContact.setEditable(true);
-
-        });
-
-        delete.setOnAction(e -> {
-            customerService.deleteCustomer(selectedCustomer);
+        menuItemDelete.setOnAction( e -> {
+            customerService.deleteCustomer(tblCustomerTable.getSelectionModel().getSelectedItem());
             loadDataToTable();
         });
 
-        ContextMenu tblMenu = new ContextMenu(edit, delete);
-        tblMenu.show(tblCustomerTable, event.getScreenX(), event.getScreenY());
+        ContextMenu tblMenu = new ContextMenu(menuItemDelete);
+        tblMenu.show(tblCustomerTable,event.getScreenX(),event.getScreenY());
 
     }
 
-    private void cellEditComits() {
-
-        colName.setCellFactory(TextFieldTableCell.forTableColumn());
-        colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
-        colContact.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-
-        colName.setOnEditCommit(ev -> {
-
-            Customer customer = ev.getRowValue();
-            String newName = ev.getNewValue();
-            if (newName.equals(ev.getOldValue())){
-                return;
-            }
-            customer.setName(newName);
-            customerService.updateCustomer(customer);
-        });
-
-        colEmail.setOnEditCommit(ev -> {
-
-            Customer customer = ev.getRowValue();
-            String newEmail = ev.getNewValue();
-            if (newEmail.equals(ev.getOldValue())){
-                return;
-            }
-            customer.setEmail(newEmail);
-            customerService.updateCustomer(customer);
-        });
-
-        colContact.setOnEditCommit(ev -> {
-
-            Customer customer = ev.getRowValue();
-            Integer newPhone = ev.getNewValue();
-            if (newPhone.equals(ev.getOldValue())){
-                return;
-            }
-            customer.setPhoneNumber(newPhone);
-            customerService.updateCustomer(customer);
-        });
-
-        tblCustomerTable.setEditable(false);
-        colName.setEditable(false);
-        colEmail.setEditable(false);
-        colContact.setEditable(false);
-
-        loadDataToTable();
-    }
 
     @FXML
     void btnAddButtonOnAction(ActionEvent event) {
 
-        customerService.addCustomer(new Customer(
-                txtId.getText(),
-                txtName.getText(),
-                Integer.parseInt(txtContact.getText()),
-                txtEmail.getText()
-        ));
-        loadDataToTable();
-        clearFields();
+        if (!txtId.getText().matches(".*[a-zA-Z].*" ) || !txtName.getText().matches(".*[a-zA-Z0-9].*") || !txtEmail.getText().matches(".*[a-zA-Z0-9@.].*")){
+            return;
+        }
+        try {
+            customerService.addCustomer(new Customer(
+                    txtId.getText(),
+                    txtName.getText(),
+                    Integer.parseInt(txtContact.getText()),
+                    txtEmail.getText()
+            ));
+            loadDataToTable();
+            clearFields();
+        } catch (RuntimeException e) {
+
+        }
     }
 
     private void clearFields() {
@@ -169,8 +115,8 @@ public class CustomerFormController implements Initializable {
 
     @FXML
     void tblOnMouseClicked(MouseEvent event) {
-
-
+        Customer customer = tblCustomerTable.getSelectionModel().getSelectedItem();
+        setCustomerFields(customer);
     }
 
     @FXML
@@ -194,45 +140,90 @@ public class CustomerFormController implements Initializable {
         valueSetToTable();
         loadDataToTable();
         searchButtonListner();
-        tblCustomerTable.setEditable(false);
+        textFomatters();
+    }
 
-        cellEditComits();
+    private void textFomatters(){
+
+        txtId.setEditable(false);
+
+        txtName.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z ]*")){
+                return change;
+            }
+            return null;
+        }));
+        txtSearch.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z ]*")){
+                return change;
+            }
+            return null;
+        }));
+        txtEmail.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z0-9-_.@ ]*")){
+                return change;
+            }
+            return null;
+        }));
+
+        txtContact.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[0-9]*")){
+                return change;
+            }
+            return null;
+        }));
+
     }
 
     private void searchButtonListner() {
-        try {
-            txtSearch.textProperty().addListener((obs,oldText,newText) -> {
-                suggestionCustomerNameMenu.hide();
-                suggestionCustomerNameMenu.getItems().clear();
+//        try {
+//            txtSearch.textProperty().addListener((obs,oldText,newText) -> {
+//                suggestionCustomerNameMenu.hide();
+//                suggestionCustomerNameMenu.getItems().clear();
+//
+//                if(newText == null || newText.trim().length()<2){
+//                    return;
+//                }
+//
+//                ObservableList<Customer> customerList = customerService.searchCustomerByNameSearch(newText);
+//
+//                for (Customer customer: customerList){
+//
+//                    Label label = new Label(customer.getId() +" - " +customer.getName());
+//                    label.setStyle("-fx-font-weight: bold;");
+//
+//                    MenuItem menuItem = new MenuItem();
+//                    menuItem.setGraphic(label);
+//                    menuItem.setOnAction((e -> {
+//                        setCustomerFields(customer);
+//
+//                    }));
+//                    suggestionCustomerNameMenu.getItems().add(menuItem);
+//                }
+//
+//                if (!suggestionCustomerNameMenu.getItems().isEmpty()) {
+//                    suggestionCustomerNameMenu.show(txtSearch, Side.BOTTOM, 0, 0);
+//                }
+//
+//            });
+//        } catch (RuntimeException e) {
+//
+//        }
 
-                if(newText == null || newText.trim().length()<2){
-                    return;
-                }
+        txtSearch.textProperty().addListener((obs,oldText,newText) -> {
 
-                ObservableList<Customer> customerList = customerService.searchCustomerByNameSearch(newText);
+            if(newText == null || newText.trim().length()<2){
+                loadDataToTable();
+                return;
+            }
+            searchedCustomerList = customerService.searchCustomerByNameSearch(newText);
 
-                for (Customer customer: customerList){
-
-                    Label label = new Label(customer.getId() +" - " +customer.getName());
-                    label.setStyle("-fx-font-weight: bold;");
-
-                    MenuItem menuItem = new MenuItem();
-                    menuItem.setGraphic(label);
-                    menuItem.setOnAction((e -> {
-                        setCustomerFields(customer);
-
-                    }));
-                    suggestionCustomerNameMenu.getItems().add(menuItem);
-                }
-
-                if (!suggestionCustomerNameMenu.getItems().isEmpty()) {
-                    suggestionCustomerNameMenu.show(txtSearch, Side.BOTTOM, 0, 0);
-                }
-
-            });
-        } catch (RuntimeException e) {
-
-        }
+            tblCustomerTable.setItems(searchedCustomerList);
+        });
     }
 
     private void valueSetToTable() {

@@ -63,15 +63,24 @@ public class EmployeeFormController implements Initializable {
 
     @FXML
     void btnAddButtonOnAction(ActionEvent event) {
-        employeeService.addEmployee(new Employee(
-                txtId.getText(),
-                txtName.getText(),
-                txtRole.getText(),
-                Integer.parseInt(txtContact.getText())
-        ));
-        loadDataToTable();
-        clearFields();
-        txtId.setText(employeeService.getNewEmployeeId());
+
+        if (!txtId.getText().matches(".*[a-zA-Z].*" ) || !txtName.getText().matches(".*[a-zA-Z0-9].*") || !txtRole.getText().matches(".*[a-zA-Z0-9@.].*")){
+            return;
+        }
+
+        try {
+            employeeService.addEmployee(new Employee(
+                    txtId.getText(),
+                    txtName.getText(),
+                    txtRole.getText(),
+                    Integer.parseInt(txtContact.getText())
+            ));
+            loadDataToTable();
+            clearFields();
+            txtId.setText(employeeService.getNewEmployeeId());
+        } catch (RuntimeException e) {
+
+        }
     }
 
     @FXML
@@ -89,15 +98,22 @@ public class EmployeeFormController implements Initializable {
 
     @FXML
     void btnUpdateButtonOnAction(ActionEvent event) {
-        employeeService.updateEmployee(new Employee(
-                txtId.getText(),
-                txtName.getText(),
-                txtRole.getText(),
-                Integer.parseInt(txtContact.getText())
-        ));
-        loadDataToTable();
-        clearFields();
-        txtId.setText(employeeService.getNewEmployeeId());
+        if (!txtId.getText().matches(".*[a-zA-Z].*" ) || !txtName.getText().matches(".*[a-zA-Z0-9].*") || !txtRole.getText().matches(".*[a-zA-Z0-9@.].*")){
+            return;
+        }
+        try {
+            employeeService.updateEmployee(new Employee(
+                    txtId.getText(),
+                    txtName.getText(),
+                    txtRole.getText(),
+                    Integer.parseInt(txtContact.getText())
+            ));
+            loadDataToTable();
+            clearFields();
+            txtId.setText(employeeService.getNewEmployeeId());
+        } catch (RuntimeException e) {
+
+        }
     }
 
     private void clearFields() {
@@ -142,6 +158,42 @@ public class EmployeeFormController implements Initializable {
         valueSetToTable();
         loadDataToTable();
         searchButtonListner();
+        textFomatters();
+    }
+
+    private void textFomatters(){
+        txtId.setEditable(false);
+        txtName.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z ]*")){
+                return change;
+            }
+            return null;
+        }));
+
+        txtSearch.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z ]*")){
+                return change;
+            }
+            return null;
+        }));
+
+        txtRole.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[a-zA-Z-_0-9 ]*")){
+                return change;
+            }
+            return null;
+        }));
+
+        txtContact.setTextFormatter(new TextFormatter<>(change -> {
+            String text = change.getControlNewText();
+            if (text.matches("[0-9]*") ){
+                return change;
+            }
+            return null;
+        }));
     }
 
     private void searchButtonListner() {
