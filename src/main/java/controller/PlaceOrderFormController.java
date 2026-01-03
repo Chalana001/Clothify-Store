@@ -75,6 +75,11 @@ public class PlaceOrderFormController implements Initializable {
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
+
+        if (cartProducts.isEmpty() || customerID.isEmpty()){
+            return;
+        }
+
         placeOrderService.placeOrder(new Orders(
                 genOrderId(),
                 customerID,

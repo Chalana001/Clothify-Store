@@ -13,6 +13,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.IntegerStringConverter;
 import modle.dto.Customer;
+import modle.dto.Supplier;
 import service.CustomerService;
 import service.Impl.CustomerServiceImpl;
 
@@ -72,6 +73,7 @@ public class CustomerFormController implements Initializable {
         menuItemDelete.setOnAction( e -> {
             customerService.deleteCustomer(tblCustomerTable.getSelectionModel().getSelectedItem());
             loadDataToTable();
+            clearFields();
         });
 
         ContextMenu tblMenu = new ContextMenu(menuItemDelete);
@@ -95,6 +97,25 @@ public class CustomerFormController implements Initializable {
             ));
             loadDataToTable();
             clearFields();
+        } catch (RuntimeException e) {
+
+        }
+    }
+
+    @FXML
+    void btnUpdateButtonOnAction(ActionEvent event) {
+
+        if (!txtId.getText().matches(".*[a-zA-Z].*" ) || !txtName.getText().matches(".*[a-zA-Z0-9].*") || !txtEmail.getText().matches(".*[a-zA-Z0-9@.].*")){
+            return;
+        }
+        try {
+            customerService.updateCustomer(new Customer(
+                    txtId.getText(),
+                    txtName.getText(),
+                    Integer.parseInt(txtContact.getText()),
+                    txtEmail.getText()
+            ));
+            loadDataToTable();
         } catch (RuntimeException e) {
 
         }

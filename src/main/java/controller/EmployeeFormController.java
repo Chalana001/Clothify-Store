@@ -90,6 +90,7 @@ public class EmployeeFormController implements Initializable {
         menuItemDelete.setOnAction( e -> {
             employeeService.deleteEmployee(tblEmployeeTable.getSelectionModel().getSelectedItem());
             loadDataToTable();
+            clearFields();
         });
 
         ContextMenu tblMenu = new ContextMenu(menuItemDelete);

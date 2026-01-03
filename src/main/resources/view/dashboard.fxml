@@ -28,9 +28,9 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTotalProducts" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" styleClass="card-value" stylesheets="@../css/my.css" textFill="#111827">
+                  <Label fx:id="lblTotalProducts" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" style="-fx-text-fill: #2563eb;" styleClass="card-value" stylesheets="@../css/my.css" textFill="#2563eb">
                      <font>
-                        <Font name="System Bold" size="35.0" />
+                        <Font name="System Bold Italic" size="35.0" />
                      </font>
                   </Label>
                </children>
@@ -42,7 +42,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTotalRevenue" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" styleClass="card-value" stylesheets="@../css/my.css" textFill="#111827">
+                  <Label fx:id="lblTotalRevenue" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" style="-fx-text-fill: #F97316;" styleClass="card-value" stylesheets="@../css/my.css" textFill="#f97316">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
@@ -56,7 +56,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblLowStock" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" styleClass="card-value" stylesheets="@../css/my.css" textFill="#111827">
+                  <Label fx:id="lblLowStock" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" style="-fx-text-fill: #16A34A;" styleClass="card-value" stylesheets="@../css/my.css" textFill="#16a34a">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
@@ -70,7 +70,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTotalCustomer" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" styleClass="card-value" stylesheets="@../css/my.css" textFill="#111827">
+                  <Label fx:id="lblTotalCustomer" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" style="-fx-text-fill: #e6d439;" styleClass="card-value" stylesheets="@../css/my.css" textFill="#e6d439">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>

@@ -20,13 +20,13 @@
                <children>
                   <VBox alignment="BOTTOM_LEFT" prefHeight="167.0" prefWidth="184.0" spacing="5.0">
                      <children>
-                        <Label prefHeight="28.0" prefWidth="184.0" text="Product ID">
+                        <Label prefHeight="28.0" prefWidth="184.0" text="Product ID" textFill="#2563eb">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
                         <TextField fx:id="txtProductId" onAction="#txtProductIdOnAction" promptText="Enter Product ID" stylesheets="@../css/my.css" />
-                        <Label prefHeight="28.0" prefWidth="184.0" text="Product Name">
+                        <Label prefHeight="28.0" prefWidth="184.0" text="Product Name" textFill="#2563eb">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -47,7 +47,7 @@
                   <VBox prefHeight="167.0" prefWidth="0.0" />
                   <VBox alignment="TOP_CENTER" prefHeight="180.0" prefWidth="184.0" spacing="5.0">
                      <children>
-                        <Label prefHeight="28.0" prefWidth="184.0" text="Customer">
+                        <Label prefHeight="28.0" prefWidth="184.0" text="Customer" textFill="#2563eb">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

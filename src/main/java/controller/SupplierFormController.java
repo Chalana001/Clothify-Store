@@ -129,6 +129,7 @@ public class SupplierFormController implements Initializable {
         menuItemDelete.setOnAction( e -> {
             supplierService.deleteSupplier(tblSupplierTable.getSelectionModel().getSelectedItem());
             loadDataToTable();
+            clearFields();
         });
 
         ContextMenu tblMenu = new ContextMenu(menuItemDelete);

@@ -146,6 +146,7 @@ public class ProductsFormController implements Initializable {
         menuItemDelete.setOnAction( e -> {
             productService.deleteProduct(tblProductTable.getSelectionModel().getSelectedItem());
             loadDataToTable();
+            clearFields();
         });
 
         ContextMenu tblMenu = new ContextMenu(menuItemDelete);

@@ -15,7 +15,7 @@
     <children>
         <VBox alignment="CENTER" prefHeight="400.0" prefWidth="234.0" spacing="10.0">
             <children>
-                <Label prefHeight="23.0" prefWidth="186.0" text="Customer ID">
+                <Label prefHeight="23.0" prefWidth="186.0" text="Customer ID" textFill="#2563eb">
                     <font>
                         <Font size="13.0" />
                     </font>
@@ -26,32 +26,37 @@
                         <Button fx:id="btnGenId" layoutX="155.0" mnemonicParsing="false" onAction="#btnGenIdOnAction" prefHeight="25.0" prefWidth="27.0" stylesheets="@../css/my.css" text="R" />
                     </children>
                 </AnchorPane>
-                <Label prefHeight="17.0" prefWidth="195.0" text="Customer Name">
+                <Label prefHeight="17.0" prefWidth="195.0" text="Customer Name" textFill="#2563eb">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Label>
                 <TextField fx:id="txtName" promptText="Enter Customer Name" stylesheets="@../css/my.css" />
-                <Label prefHeight="17.0" prefWidth="195.0" text="Contact">
+                <Label prefHeight="17.0" prefWidth="195.0" text="Contact" textFill="#2563eb">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Label>
                 <TextField fx:id="txtContact" promptText="Enter Customer Contact Number" stylesheets="@../css/my.css" />
-                <Label prefHeight="17.0" prefWidth="195.0" text="Email">
+                <Label prefHeight="17.0" prefWidth="195.0" text="Email" textFill="#2563eb">
                     <font>
                         <Font size="13.0" />
                     </font>
                 </Label>
                 <TextField fx:id="txtEmail" promptText="Enter Customer Email" stylesheets="@../css/my.css" />
-                <Button fx:id="btnAddButton" mnemonicParsing="false" onAction="#btnAddButtonOnAction" prefHeight="34.0" prefWidth="107.0" stylesheets="@../css/my.css" text="Add" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+               <children>
+                      <Button fx:id="btnAddButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnAddButtonOnAction" prefHeight="34.0" prefWidth="90.0" stylesheets="@../css/my.css" text="Add" />
+                  <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnUpdateButtonOnAction" prefHeight="34.0" prefWidth="90.0" stylesheets="@../css/my.css" text="Update" />
+               </children>
+            </HBox>
             </children>
         </VBox>
         <VBox prefHeight="400.0" prefWidth="452.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="59.0" prefWidth="409.0" spacing="90.0">
                     <children>
-                        <Label prefHeight="38.0" prefWidth="146.0" text="Customers Table">
+                        <Label prefHeight="38.0" prefWidth="186.0" text="Customers Table">
                             <font>
                                 <Font size="19.0" />
                             </font>
