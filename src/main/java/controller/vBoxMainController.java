@@ -2,12 +2,15 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class vBoxMainController {
+public class vBoxMainController implements Initializable {
 
     @FXML
     private StackPane contentPane;
@@ -66,5 +69,10 @@ public class vBoxMainController {
     @FXML
     private void logout() {
         System.out.println("Logout clicked");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadView("dashboard.fxml");
     }
 }

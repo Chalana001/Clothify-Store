@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardFormController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="19.0" prefWidth="224.0" text="Dashboard">
+      <Label layoutX="20.0" layoutY="14.0" prefHeight="19.0" prefWidth="224.0" text="Dashboard" textFill="#0f172a">
          <font>
             <Font name="System Bold" size="29.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="57.0" prefHeight="19.0" prefWidth="283.0" text="Welcome to Clothify Store Management System" textFill="#6b7280">
+      <Label layoutX="22.0" layoutY="57.0" prefHeight="19.0" prefWidth="283.0" text="Welcome to Clothify Store Management System" textFill="#64748b">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" layoutX="11.0" layoutY="100.0" prefHeight="100.0" prefWidth="578.0" spacing="30.0">
+      <HBox alignment="CENTER" layoutX="11.0" layoutY="100.0" prefHeight="100.0" prefWidth="658.0" spacing="30.0">
          <children>
             <VBox prefHeight="71.0" prefWidth="100.0" styleClass="card-blue" stylesheets="@../css/my.css">
                <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="card-title" stylesheets="@../css/my.css" text="Total Products">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="card-title" stylesheets="@../css/my.css" text="Total Products" textFill="#334155">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -37,7 +37,7 @@
             </VBox>
             <VBox prefHeight="71.0" prefWidth="100.0" styleClass="card-orange" stylesheets="@../css/my.css">
                <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="card-title" stylesheets="@../css/my.css" text="Total Revenue" textFill="#5e5e5e">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="card-title" stylesheets="@../css/my.css" text="Total Revenue" textFill="#334155">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -49,28 +49,28 @@
                   </Label>
                </children>
             </VBox>
-            <VBox prefHeight="71.0" prefWidth="100.0" styleClass="card-green" stylesheets="@../css/my.css">
+            <VBox prefHeight="71.0" prefWidth="100.0" styleClass="card-red" stylesheets="@../css/my.css">
                <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="card-title" stylesheets="@../css/my.css" text="Low Stock Items" textFill="#5e5e5e">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="card-title" stylesheets="@../css/my.css" text="Low Stock Items" textFill="#334155">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblLowStock" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" style="-fx-text-fill: #16A34A;" styleClass="card-value" stylesheets="@../css/my.css" textFill="#16a34a">
+                  <Label fx:id="lblLowStock" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" style="-fx-text-fill: #ff2323;" styleClass="card-value" stylesheets="@../css/my.css" textFill="#ff2323">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <VBox prefHeight="71.0" prefWidth="100.0" styleClass="card-yellow" stylesheets="@../css/my.css">
+            <VBox prefHeight="71.0" prefWidth="100.0" styleClass="card-green" stylesheets="@../css/my.css">
                <children>
-                  <Label alignment="BOTTOM_CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="card-title" stylesheets="@../css/my.css" text="Total Customers" textFill="#d75c5c">
+                  <Label alignment="BOTTOM_CENTER" prefHeight="23.0" prefWidth="100.0" styleClass="card-title" stylesheets="@../css/my.css" text="Total Customers" textFill="#334155">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTotalCustomer" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" style="-fx-text-fill: #e6d439;" styleClass="card-value" stylesheets="@../css/my.css" textFill="#e6d439">
+                  <Label fx:id="lblTotalCustomer" alignment="CENTER" contentDisplay="CENTER" prefHeight="77.0" prefWidth="100.0" style="-fx-text-fill: #16A34A;" styleClass="card-value" stylesheets="@../css/my.css" textFill="#16a34a">
                      <font>
                         <Font name="System Bold" size="35.0" />
                      </font>
@@ -79,9 +79,9 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="232.0" prefHeight="133.0" prefWidth="578.0" spacing="20.0">
+      <HBox alignment="CENTER" layoutX="4.0" layoutY="232.0" prefHeight="133.0" prefWidth="658.0" spacing="20.0">
          <children>
-            <VBox prefHeight="155.0" prefWidth="280.0" style="-fx-border-color: #6B7280;">
+            <VBox prefHeight="133.0" prefWidth="291.0" style="-fx-border-color: #6B7280;">
                <children>
                   <Label prefHeight="25.0" prefWidth="249.0" text="Recent Orders">
                      <VBox.margin>
@@ -120,7 +120,7 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <VBox prefHeight="155.0" prefWidth="280.0" style="-fx-border-color: #6B7280;">
+            <VBox prefHeight="133.0" prefWidth="293.0" style="-fx-border-color: #6B7280;">
                <children>
                   <Label prefHeight="25.0" prefWidth="249.0" text="Low Stock Alert">
                      <VBox.margin>

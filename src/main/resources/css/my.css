@@ -117,7 +117,7 @@
     -fx-border-color: #F97316;
     -fx-border-width: 0 0 3 0;
 }
-.card-yellow {
-    -fx-border-color: #e6d439;
+.card-red {
+    -fx-border-color: #ff2323;
     -fx-border-width: 0 0 3 0;
 }

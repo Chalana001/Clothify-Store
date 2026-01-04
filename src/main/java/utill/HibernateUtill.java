@@ -18,6 +18,7 @@ public class HibernateUtill {
         config.addAnnotatedClass(ProductEntity.class);
         config.addAnnotatedClass(OrdersEntity.class);
         config.addAnnotatedClass(OrderDetailsEntity.class);
+        config.addAnnotatedClass(UserEntity.class);
 
 
         config.configure();

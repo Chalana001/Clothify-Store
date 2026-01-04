@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" style="-fx-border-color: #2563EB;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SupplierFormController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="670.0" spacing="10.0" style="-fx-border-color: #2563EB;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SupplierFormController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="234.0" spacing="10.0">
          <children>
-            <Label prefHeight="23.0" prefWidth="197.0" text="Supplier ID" textFill="#2563eb">
+            <Label prefHeight="23.0" prefWidth="197.0" text="Supplier ID" textFill="#475569">
                <font>
                   <Font size="13.0" />
                </font>
@@ -23,31 +23,31 @@
             <AnchorPane prefHeight="30.0" prefWidth="191.0">
                <children>
                   <TextField fx:id="txtSupplierId" layoutY="2.0" onAction="#txtSupplierIdOnAction" prefHeight="42.0" prefWidth="154.0" promptText="Enter Supplier ID" stylesheets="@../css/my.css" />
-                  <Button fx:id="btnGenId" layoutX="155.0" mnemonicParsing="false" onAction="#btnGenIdOnAction" prefHeight="19.0" prefWidth="16.0" stylesheets="@../css/my.css" text="R" />
+                  <Button fx:id="btnGenId" layoutX="179.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnGenIdOnAction" prefHeight="19.0" prefWidth="16.0" style="-fx-background-color: #2563EB; -fx-background-radius: 18;" text="R" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <Label prefHeight="17.0" prefWidth="195.0" text="Supplier Name" textFill="#2563eb">
+            <Label prefHeight="17.0" prefWidth="195.0" text="Supplier Name" textFill="#475569">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
             <TextField fx:id="txtSupplierName" promptText="Enter Supplier Name" stylesheets="@../css/my.css" />
-            <Label prefHeight="17.0" prefWidth="195.0" text="Contact" textFill="#2563eb">
+            <Label prefHeight="17.0" prefWidth="195.0" text="Contact" textFill="#475569">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
             <TextField fx:id="txtSupplierContact" promptText="Enter Supplier contact" stylesheets="@../css/my.css" />
-            <Label prefHeight="17.0" prefWidth="195.0" text="Email" textFill="#2563eb">
+            <Label prefHeight="17.0" prefWidth="195.0" text="Email" textFill="#475569">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
             <TextField fx:id="txtSupplierEmail" promptText="Enter Supplier Email" stylesheets="@../css/my.css" />
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="205.0" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="205.0" spacing="10.0">
                <children>
                   <Button fx:id="btnAddButton" mnemonicParsing="false" onAction="#btnAddButtonOnAction" prefHeight="40.0" prefWidth="88.0" stylesheets="@../css/my.css" text="Add" />
-                  <Button fx:id="btnUpdateButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnUpdateButtonOnAction" stylesheets="@../css/my.css" text="Update" />
+                  <Button fx:id="btnUpdateButton" maxWidth="-Infinity" mnemonicParsing="false" onAction="#btnUpdateButtonOnAction" prefHeight="40.0" prefWidth="95.0" stylesheets="@../css/my.css" text="Update" />
                </children>
             </HBox>
          </children>
@@ -56,9 +56,9 @@
          <children>
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="409.0" spacing="90.0">
                <children>
-                  <Label prefHeight="38.0" prefWidth="175.0" text="Suppliers Table" textFill="#2563eb">
+                  <Label prefHeight="38.0" prefWidth="175.0" text="Suppliers Table" textFill="#0f172a">
                      <font>
-                        <Font size="19.0" />
+                        <Font name="System Bold" size="19.0" />
                      </font>
                   </Label>
                   <TextField fx:id="txtSearchSupplier" promptText="Search suppliers..." stylesheets="@../css/my.css" />
@@ -69,9 +69,9 @@
                   <TableView fx:id="tblSupplierTable" onContextMenuRequested="#showContextMenu" onMouseClicked="#tblOnMouseClicked" prefHeight="335.0" prefWidth="435.0">
                     <columns>
                       <TableColumn fx:id="colSupplierId" prefWidth="75.0" text="Supplier ID" />
-                      <TableColumn fx:id="colSupplierName" prefWidth="151.0" text="Name" />
-                        <TableColumn fx:id="colContact" prefWidth="70.0" text="Contact" />
-                        <TableColumn fx:id="colEmail" prefWidth="78.0" text="Email" />
+                      <TableColumn fx:id="colSupplierName" prefWidth="139.0" text="Name" />
+                        <TableColumn fx:id="colContact" prefWidth="79.0" text="Contact" />
+                        <TableColumn fx:id="colEmail" prefWidth="139.0" text="Email" />
                     </columns>
                   </TableView>
                </children>

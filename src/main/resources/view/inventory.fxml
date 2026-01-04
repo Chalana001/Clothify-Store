@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventoryFormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="670.0" spacing="10.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InventoryFormController">
    <children>
       <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0" spacing="90.0">
          <children>
-            <Label prefHeight="44.0" prefWidth="176.0" text="Current Stock Levels">
+            <Label prefHeight="44.0" prefWidth="176.0" text="Current Stock Levels" textFill="#0f172a">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <TextField fx:id="txtSearchInv" prefHeight="31.0" prefWidth="192.0" promptText="Search inventory..." stylesheets="@../css/my.css">
@@ -27,11 +27,11 @@
       </HBox>
       <HBox prefHeight="338.0" prefWidth="600.0">
          <children>
-            <TableView fx:id="tblInventory" prefHeight="338.0" prefWidth="612.0">
+            <TableView fx:id="tblInventory" prefHeight="328.0" prefWidth="666.0">
               <columns>
-                <TableColumn fx:id="colId" prefWidth="138.0" text="Product Name" />
-                <TableColumn fx:id="colQty" prefWidth="332.0" text="Availible Quantity" />
-                  <TableColumn fx:id="colStatus" prefWidth="129.0" text="Status" />
+                <TableColumn fx:id="colId" prefWidth="344.0" text="Product Name" />
+                <TableColumn fx:id="colQty" prefWidth="145.0" text="Availible Quantity" />
+                  <TableColumn fx:id="colStatus" prefWidth="170.0" text="Status" />
               </columns>
             </TableView>
          </children>

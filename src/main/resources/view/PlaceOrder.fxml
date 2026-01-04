@@ -12,21 +12,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlaceOrderFormController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="670.0" spacing="10.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlaceOrderFormController">
    <children>
-      <VBox prefHeight="400.0" prefWidth="400.0" style="-fx-border-color: #6B7280;">
+      <VBox prefHeight="380.0" prefWidth="441.0" style="-fx-border-color: #6B7280;">
          <children>
             <HBox alignment="CENTER" prefHeight="169.0" prefWidth="382.0">
                <children>
                   <VBox alignment="BOTTOM_LEFT" prefHeight="167.0" prefWidth="184.0" spacing="5.0">
                      <children>
-                        <Label prefHeight="28.0" prefWidth="184.0" text="Product ID" textFill="#2563eb">
+                        <Label prefHeight="28.0" prefWidth="184.0" text="Product ID" textFill="#475569">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
                         <TextField fx:id="txtProductId" onAction="#txtProductIdOnAction" promptText="Enter Product ID" stylesheets="@../css/my.css" />
-                        <Label prefHeight="28.0" prefWidth="184.0" text="Product Name" textFill="#2563eb">
+                        <Label prefHeight="28.0" prefWidth="184.0" text="Product Name" textFill="#475569">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -47,7 +47,7 @@
                   <VBox prefHeight="167.0" prefWidth="0.0" />
                   <VBox alignment="TOP_CENTER" prefHeight="180.0" prefWidth="184.0" spacing="5.0">
                      <children>
-                        <Label prefHeight="28.0" prefWidth="184.0" text="Customer" textFill="#2563eb">
+                        <Label prefHeight="28.0" prefWidth="184.0" text="Customer" textFill="#475569">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -73,13 +73,13 @@
             </HBox>
             <HBox prefHeight="212.0" prefWidth="382.0">
                <children>
-                  <TableView fx:id="tblCart" prefHeight="211.0" prefWidth="387.0">
+                  <TableView fx:id="tblCart" prefHeight="206.0" prefWidth="413.0">
                     <columns>
                       <TableColumn fx:id="coltProductId" prefWidth="67.0" text="Product ID" />
-                      <TableColumn fx:id="colProductName" prefWidth="124.0" text="Product Name" />
-                        <TableColumn fx:id="colQty" prefWidth="45.0" text="Qty" />
-                        <TableColumn fx:id="colPrice" prefWidth="63.0" text="Price" />
-                        <TableColumn fx:id="colTotal" prefWidth="82.0" text="Total" />
+                      <TableColumn fx:id="colProductName" prefWidth="154.0" text="Product Name" />
+                        <TableColumn fx:id="colQty" prefWidth="44.0" text="Qty" />
+                        <TableColumn fx:id="colPrice" prefWidth="61.0" text="Price" />
+                        <TableColumn fx:id="colTotal" text="Total" />
                     </columns>
                   </TableView>
                </children>
@@ -92,11 +92,11 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="201.0" style="-fx-border-color: #6B7280;">
+      <VBox alignment="CENTER" prefHeight="380.0" prefWidth="242.0" style="-fx-border-color: #6B7280;">
          <children>
             <HBox alignment="CENTER" prefHeight="86.0" prefWidth="184.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="186.0" text="Order Summary">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="186.0" text="Order Summary" textFill="#0f172a">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

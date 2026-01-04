@@ -10,32 +10,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="670.0" spacing="10.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductsFormController">
    <children>
       <VBox prefHeight="401.0" prefWidth="206.0">
          <children>
-            <Label text="Product Id" textFill="#2563eb" />
+            <Label text="Product Id" textFill="#475569" />
             <AnchorPane prefHeight="18.0" prefWidth="206.0">
                <children>
                   <TextField fx:id="txtProductId" onAction="#txtProductIdOnAction" prefHeight="44.0" prefWidth="187.0" promptText="Enter Product Id" stylesheets="@../css/my.css" />
-                  <Button layoutX="156.0" layoutY="2.0" mnemonicParsing="false" onAction="#btnGenIdOnAction" prefHeight="25.0" prefWidth="28.0" stylesheets="@../css/my.css" text="R" />
+                  <Button layoutX="151.0" layoutY="9.0" mnemonicParsing="false" onAction="#btnGenIdOnAction" prefHeight="25.0" prefWidth="28.0" style="-fx-background-color: #2563EB; -fx-background-radius: 18;" text="R" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <Label prefHeight="0.0" prefWidth="77.0" text="Product Name" textFill="#2563eb" />
+            <Label prefHeight="0.0" prefWidth="77.0" text="Product Name" textFill="#475569" />
             <TextField fx:id="txtProductName" prefHeight="24.0" prefWidth="206.0" promptText="Enter Product Name" stylesheets="@../css/my.css" />
-            <Label text="Catogary" textFill="#2563eb" />
+            <Label text="Catogary" textFill="#475569" />
             <TextField fx:id="txtProductCatagory" promptText="Search catogary" stylesheets="@../css/my.css" />
-            <Label text="Size" textFill="#2563eb" />
+            <Label text="Size" textFill="#475569" />
             <TextField fx:id="txtProductSize" promptText="Enter Size" stylesheets="@../css/my.css" />
-            <Label text="Price" textFill="#2563eb" />
+            <Label text="Price" textFill="#475569" />
             <TextField fx:id="txtProductPrice" prefHeight="30.0" prefWidth="206.0" promptText="Enter Price" stylesheets="@../css/my.css" />
-            <Label text="Quantity" textFill="#2563eb" />
+            <Label text="Quantity" textFill="#475569" />
             <TextField fx:id="txtProductQty" promptText="Enter Qty" stylesheets="@../css/my.css" />
             <HBox prefHeight="46.0" prefWidth="206.0" spacing="20.0">
                <children>
-                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="89.0" stylesheets="@../css/my.css" text="Add" />
-                  <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="40.0" prefWidth="89.0" stylesheets="@../css/my.css" text="Update" />
+                  <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#btnAddOnAction" prefHeight="40.0" prefWidth="89.0" stylesheets="@../css/my.css" text="Add">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Button>
+                  <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="40.0" prefWidth="100.0" stylesheets="@../css/my.css" text="Update">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>
